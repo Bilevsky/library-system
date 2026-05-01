@@ -10,13 +10,13 @@
 
 using namespace std;
 
-// Установка русской кодировки
+// СѓСЃС‚Р°РЅРѕРІРєР° СЂСѓСЃСЃРєРѕР№ РєРѕРґРёСЂРѕРІРєРё
 void setRussian() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 }
 
-// Структура записи
+// СЃС‚СЂСѓРєС‚СѓСЂР° Р·Р°РїРёСЃРё
 struct BookRecord {
     int id;
     char bookTitle[100];
@@ -80,7 +80,7 @@ public:
     void loadFromFile() {
         ifstream file(filename, ios::binary);
         if (!file) {
-            cout << "Файл не найден. Будет создан новый файл.\n";
+            cout << "Р¤Р°Р№Р» РЅРµ РЅР°Р№РґРµРЅ. Р‘СѓРґРµС‚ СЃРѕР·РґР°РЅ РЅРѕРІС‹Р№ С„Р°Р№Р».\n";
             return;
         }
         
@@ -94,13 +94,13 @@ public:
         }
         file.close();
         
-        cout << "Загружено " << records.size() << " записей.\n";
+        cout << "Р—Р°РіСЂСѓР¶РµРЅРѕ " << records.size() << " Р·Р°РїРёСЃРµР№.\n";
     }
     
     void saveToFile() {
         ofstream file(filename, ios::binary | ios::trunc);
         if (!file) {
-            cout << "Ошибка: не удалось открыть файл для записи!\n";
+            cout << "РћС€РёР±РєР°: РЅРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р» РґР»СЏ Р·Р°РїРёСЃРё!\n";
             return;
         }
         
@@ -109,27 +109,27 @@ public:
         }
         file.close();
         
-        cout << "Данные сохранены.\n";
+        cout << "Р”Р°РЅРЅС‹Рµ СЃРѕС…СЂР°РЅРµРЅС‹.\n";
     }
     
     void addRecord() {
         BookRecord record;
         record.id = nextId++;
         
-        cout << "\n=== Добавление записи ===\n";
-        cout << "ID записи: " << record.id << "\n";
+        cout << "\n=== Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕР№ Р·Р°РїРёСЃРё ===\n";
+        cout << "ID Р·Р°РїРёСЃРё: " << record.id << "\n";
         
-        cout << "Введите название книги: ";
+        cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєРЅРёРіРё: ";
         clearBuffer();
         cin.getline(record.bookTitle, sizeof(record.bookTitle));
         
-        cout << "Введите ФИО читателя: ";
+        cout << "Р’РІРµРґРёС‚Рµ Р¤РРћ С‡РёС‚Р°С‚РµР»СЏ: ";
         cin.getline(record.readerName, sizeof(record.readerName));
         
-        cout << "Введите дату выдачи (ДД.ММ.ГГГГ): ";
+        cout << "Р’РІРµРґРёС‚Рµ РґР°С‚Сѓ РІС‹РґР°С‡Рё (Р”Р”.РњРњ.Р“Р“Р“Р“): ";
         cin.getline(record.issueDate, sizeof(record.issueDate));
         
-        cout << "Введите дату возврата (ДД.ММ.ГГГГ): ";
+        cout << "Р’РІРµРґРёС‚Рµ РїСЂРµРґРїРѕР»Р°РіР°РµРјСѓСЋ РґР°С‚Сѓ РІРѕР·РІСЂР°С‚Р° (Р”Р”.РњРњ.Р“Р“Р“Р“): ";
         cin.getline(record.expectedReturnDate, sizeof(record.expectedReturnDate));
         
         record.isReturned = false;
@@ -138,23 +138,23 @@ public:
         records.push_back(record);
         saveToFile();
         
-        cout << "Запись добавлена!\n";
+        cout << "Р—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ РґРѕР±Р°РІР»РµРЅР°!\n";
     }
     
     void viewAllRecords() {
         if (records.empty()) {
-            cout << "\nНет записей.\n";
+            cout << "\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.\n";
             return;
         }
         
-        cout << "\n=== Все записи ===\n";
+        cout << "\n=== Р’СЃРµ Р·Р°РїРёСЃРё ===\n";
         cout << left << setw(5) << "ID" 
-             << setw(30) << "Название книги"
-             << setw(25) << "Читатель"
-             << setw(12) << "Дата выдачи"
-             << setw(15) << "До возврата"
-             << setw(15) << "Факт. возврат"
-             << setw(10) << "Статус" << "\n";
+             << setw(30) << "РќР°Р·РІР°РЅРёРµ РєРЅРёРіРё"
+             << setw(25) << "Р§РёС‚Р°С‚РµР»СЊ"
+             << setw(12) << "Р”Р°С‚Р° РІС‹РґР°С‡Рё"
+             << setw(15) << "РџСЂРµРґРї. РІРѕР·РІСЂР°С‚"
+             << setw(15) << "Р¤Р°РєС‚. РІРѕР·РІСЂР°С‚"
+             << setw(10) << "РЎС‚Р°С‚СѓСЃ" << "\n";
         cout << string(112, '-') << "\n";
         
         for (const auto& record : records) {
@@ -166,10 +166,10 @@ public:
             
             if (record.isReturned) {
                 cout << setw(15) << record.actualReturnDate
-                     << setw(10) << "Возвращена";
+                     << setw(10) << "Р’РѕР·РІСЂР°С‰РµРЅР°";
             } else {
-                cout << setw(15) << "Не возвращена"
-                     << setw(10) << (isOverdue(record) ? "ПРОСРОЧКА" : "На руках");
+                cout << setw(15) << "РќРµ РІРѕР·РІСЂР°С‰РµРЅР°"
+                     << setw(10) << (isOverdue(record) ? "РџР РћРЎР РћР§РљРђ!" : "РќР° СЂСѓРєР°С…");
             }
             cout << "\n";
         }
@@ -177,13 +177,13 @@ public:
     
     void editRecord() {
         if (records.empty()) {
-            cout << "\nНет записей.\n";
+            cout << "\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ СЂРµРґР°РєС‚РёСЂРѕРІР°РЅРёСЏ.\n";
             return;
         }
         
         int id;
-        cout << "\n=== Редактирование ===\n";
-        cout << "Введите ID: ";
+        cout << "\n=== Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ Р·Р°РїРёСЃРё ===\n";
+        cout << "Р’РІРµРґРёС‚Рµ ID Р·Р°РїРёСЃРё: ";
         cin >> id;
         
         auto it = find_if(records.begin(), records.end(), [id](const BookRecord& r) {
@@ -191,51 +191,51 @@ public:
         });
         
         if (it == records.end()) {
-            cout << "Запись с ID " << id << " не найдена!\n";
+            cout << "Р—Р°РїРёСЃСЊ СЃ ID " << id << " РЅРµ РЅР°Р№РґРµРЅР°!\n";
             return;
         }
         
-        cout << "\nТекущие данные:\n";
-        cout << "Книга: " << it->bookTitle << "\n";
-        cout << "Читатель: " << it->readerName << "\n";
-        cout << "Дата выдачи: " << it->issueDate << "\n";
-        cout << "Дата возврата: " << it->expectedReturnDate << "\n";
-        cout << "Статус: " << (it->isReturned ? "Возвращена" : "Не возвращена") << "\n";
+        cout << "\nРўРµРєСѓС‰РёРµ РґР°РЅРЅС‹Рµ:\n";
+        cout << "РљРЅРёРіР°: " << it->bookTitle << "\n";
+        cout << "Р§РёС‚Р°С‚РµР»СЊ: " << it->readerName << "\n";
+        cout << "Р”Р°С‚Р° РІС‹РґР°С‡Рё: " << it->issueDate << "\n";
+        cout << "РџСЂРµРґРїРѕР»Р°РіР°РµРјР°СЏ РґР°С‚Р° РІРѕР·РІСЂР°С‚Р°: " << it->expectedReturnDate << "\n";
+        cout << "РЎС‚Р°С‚СѓСЃ: " << (it->isReturned ? "Р’РѕР·РІСЂР°С‰РµРЅР°" : "РќРµ РІРѕР·РІСЂР°С‰РµРЅР°") << "\n";
         
-        cout << "\nВведите новые данные (Enter - оставить без изменений):\n";
+        cout << "\nР’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РґР°РЅРЅС‹Рµ (РѕСЃС‚Р°РІСЊС‚Рµ РїСѓСЃС‚С‹Рј, С‡С‚РѕР±С‹ РЅРµ РёР·РјРµРЅСЏС‚СЊ):\n";
         
         clearBuffer();
         char buffer[100];
         
-        cout << "Название книги [" << it->bookTitle << "]: ";
+        cout << "РќР°Р·РІР°РЅРёРµ РєРЅРёРіРё [" << it->bookTitle << "]: ";
         cin.getline(buffer, sizeof(buffer));
         if (strlen(buffer) > 0) strcpy(it->bookTitle, buffer);
         
-        cout << "ФИО читателя [" << it->readerName << "]: ";
+        cout << "Р¤РРћ С‡РёС‚Р°С‚РµР»СЏ [" << it->readerName << "]: ";
         cin.getline(buffer, sizeof(buffer));
         if (strlen(buffer) > 0) strcpy(it->readerName, buffer);
         
-        cout << "Дата выдачи [" << it->issueDate << "]: ";
+        cout << "Р”Р°С‚Р° РІС‹РґР°С‡Рё [" << it->issueDate << "]: ";
         cin.getline(buffer, sizeof(buffer));
         if (strlen(buffer) > 0) strcpy(it->issueDate, buffer);
         
-        cout << "Дата возврата [" << it->expectedReturnDate << "]: ";
+        cout << "РџСЂРµРґРїРѕР»Р°РіР°РµРјР°СЏ РґР°С‚Р° РІРѕР·РІСЂР°С‚Р° [" << it->expectedReturnDate << "]: ";
         cin.getline(buffer, sizeof(buffer));
         if (strlen(buffer) > 0) strcpy(it->expectedReturnDate, buffer);
         
         saveToFile();
-        cout << "Запись изменена!\n";
+        cout << "Р—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ РѕС‚СЂРµРґР°РєС‚РёСЂРѕРІР°РЅР°!\n";
     }
     
     void deleteRecord() {
         if (records.empty()) {
-            cout << "\nНет записей.\n";
+            cout << "\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ СѓРґР°Р»РµРЅРёСЏ.\n";
             return;
         }
         
         int id;
-        cout << "\n=== Удаление ===\n";
-        cout << "Введите ID: ";
+        cout << "\n=== РЈРґР°Р»РµРЅРёРµ Р·Р°РїРёСЃРё ===\n";
+        cout << "Р’РІРµРґРёС‚Рµ ID Р·Р°РїРёСЃРё: ";
         cin >> id;
         
         auto it = find_if(records.begin(), records.end(), [id](const BookRecord& r) {
@@ -243,14 +243,14 @@ public:
         });
         
         if (it == records.end()) {
-            cout << "Запись с ID " << id << " не найдена!\n";
+            cout << "Р—Р°РїРёСЃСЊ СЃ ID " << id << " РЅРµ РЅР°Р№РґРµРЅР°!\n";
             return;
         }
         
-        cout << "\nУдалить запись?\n";
-        cout << "Книга: " << it->bookTitle << "\n";
-        cout << "Читатель: " << it->readerName << "\n";
-        cout << "1 - Да, 2 - Нет\n";
+        cout << "\nР’С‹ СѓРІРµСЂРµРЅС‹, С‡С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ?\n";
+        cout << "РљРЅРёРіР°: " << it->bookTitle << "\n";
+        cout << "Р§РёС‚Р°С‚РµР»СЊ: " << it->readerName << "\n";
+        cout << "1 - Р”Р°, 2 - РќРµС‚\n";
         
         int choice;
         cin >> choice;
@@ -258,21 +258,21 @@ public:
         if (choice == 1) {
             records.erase(it);
             saveToFile();
-            cout << "Запись удалена!\n";
+            cout << "Р—Р°РїРёСЃСЊ СѓСЃРїРµС€РЅРѕ СѓРґР°Р»РµРЅР°!\n";
         } else {
-            cout << "Отменено.\n";
+            cout << "РЈРґР°Р»РµРЅРёРµ РѕС‚РјРµРЅРµРЅРѕ.\n";
         }
     }
     
     void returnBook() {
         if (records.empty()) {
-            cout << "\nНет записей.\n";
+            cout << "\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ РІРѕР·РІСЂР°С‚Р°.\n";
             return;
         }
         
         int id;
-        cout << "\n=== Возврат книги ===\n";
-        cout << "Введите ID записи: ";
+        cout << "\n=== Р’РѕР·РІСЂР°С‚ РєРЅРёРіРё ===\n";
+        cout << "Р’РІРµРґРёС‚Рµ ID Р·Р°РїРёСЃРё: ";
         cin >> id;
         
         auto it = find_if(records.begin(), records.end(), [id](const BookRecord& r) {
@@ -280,44 +280,44 @@ public:
         });
         
         if (it == records.end()) {
-            cout << "Запись с ID " << id << " не найдена!\n";
+            cout << "Р—Р°РїРёСЃСЊ СЃ ID " << id << " РЅРµ РЅР°Р№РґРµРЅР°!\n";
             return;
         }
         
         if (it->isReturned) {
-            cout << "Книга уже возвращена!\n";
+            cout << "Р­С‚Р° РєРЅРёРіР° СѓР¶Рµ РІРѕР·РІСЂР°С‰РµРЅР°!\n";
             return;
         }
         
-        cout << "\nИнформация:\n";
-        cout << "Книга: " << it->bookTitle << "\n";
-        cout << "Читатель: " << it->readerName << "\n";
-        cout << "Дата выдачи: " << it->issueDate << "\n";
-        cout << "План. возврат: " << it->expectedReturnDate << "\n";
+        cout << "\nРРЅС„РѕСЂРјР°С†РёСЏ Рѕ РІС‹РґР°С‡Рµ:\n";
+        cout << "РљРЅРёРіР°: " << it->bookTitle << "\n";
+        cout << "Р§РёС‚Р°С‚РµР»СЊ: " << it->readerName << "\n";
+        cout << "Р”Р°С‚Р° РІС‹РґР°С‡Рё: " << it->issueDate << "\n";
+        cout << "РџСЂРµРґРїРѕР»Р°РіР°РµРјС‹Р№ РІРѕР·РІСЂР°С‚: " << it->expectedReturnDate << "\n";
         
-        cout << "\nВведите дату возврата (ДД.ММ.ГГГГ): ";
+        cout << "\nР’РІРµРґРёС‚Рµ С„Р°РєС‚РёС‡РµСЃРєСѓСЋ РґР°С‚Сѓ РІРѕР·РІСЂР°С‚Р° (Р”Р”.РњРњ.Р“Р“Р“Р“): ";
         clearBuffer();
         cin.getline(it->actualReturnDate, sizeof(it->actualReturnDate));
         
         it->isReturned = true;
         
         if (compareDates(it->actualReturnDate, it->expectedReturnDate) > 0) {
-            cout << "\nВНИМАНИЕ: Просрочка!\n";
+            cout << "\nР’РќРРњРђРќРР•: РљРЅРёРіР° РІРѕР·РІСЂР°С‰РµРЅР° СЃ РїСЂРѕСЃСЂРѕС‡РєРѕР№!\n";
         }
         
         saveToFile();
-        cout << "Книга возвращена!\n";
+        cout << "РљРЅРёРіР° СѓСЃРїРµС€РЅРѕ РІРѕР·РІСЂР°С‰РµРЅР°!\n";
     }
     
     void searchByReader() {
         if (records.empty()) {
-            cout << "\nНет записей.\n";
+            cout << "\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ РїРѕРёСЃРєР°.\n";
             return;
         }
         
         char searchName[100];
-        cout << "\n=== Поиск по читателю ===\n";
-        cout << "Введите ФИО: ";
+        cout << "\n=== РџРѕРёСЃРє РїРѕ С‡РёС‚Р°С‚РµР»СЋ ===\n";
+        cout << "Р’РІРµРґРёС‚Рµ Р¤РРћ С‡РёС‚Р°С‚РµР»СЏ: ";
         clearBuffer();
         cin.getline(searchName, sizeof(searchName));
         
@@ -329,17 +329,17 @@ public:
         }
         
         if (results.empty()) {
-            cout << "Не найдено.\n";
+            cout << "Р—Р°РїРёСЃРё РґР»СЏ С‡РёС‚Р°С‚РµР»СЏ \"" << searchName << "\" РЅРµ РЅР°Р№РґРµРЅС‹.\n";
             return;
         }
         
-        cout << "\nНайдено: " << results.size() << "\n";
+        cout << "\nРќР°Р№РґРµРЅРѕ Р·Р°РїРёСЃРµР№: " << results.size() << "\n";
         cout << left << setw(5) << "ID" 
-             << setw(30) << "Книга"
-             << setw(25) << "Читатель"
-             << setw(12) << "Дата выдачи"
-             << setw(15) << "План. возврат"
-             << setw(10) << "Статус" << "\n";
+             << setw(30) << "РќР°Р·РІР°РЅРёРµ РєРЅРёРіРё"
+             << setw(25) << "Р§РёС‚Р°С‚РµР»СЊ"
+             << setw(12) << "Р”Р°С‚Р° РІС‹РґР°С‡Рё"
+             << setw(15) << "РџСЂРµРґРї. РІРѕР·РІСЂР°С‚"
+             << setw(10) << "РЎС‚Р°С‚СѓСЃ" << "\n";
         cout << string(97, '-') << "\n";
         
         for (const auto& record : results) {
@@ -350,9 +350,9 @@ public:
                  << setw(15) << record.expectedReturnDate;
             
             if (record.isReturned) {
-                cout << setw(10) << "Возвращена";
+                cout << setw(10) << "Р’РѕР·РІСЂР°С‰РµРЅР°";
             } else {
-                cout << setw(10) << (isOverdue(record) ? "ПРОСРОЧКА" : "На руках");
+                cout << setw(10) << (isOverdue(record) ? "РџР РћРЎР РћР§РљРђ" : "РќР° СЂСѓРєР°С…");
             }
             cout << "\n";
         }
@@ -367,17 +367,17 @@ public:
         }
         
         if (overdue.empty()) {
-            cout << "\nНет просроченных книг.\n";
+            cout << "\nРќРµС‚ РїСЂРѕСЃСЂРѕС‡РµРЅРЅС‹С… РєРЅРёРі.\n";
             return;
         }
         
-        cout << "\n=== Просроченные книги ===\n";
+        cout << "\n=== РџСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рµ РєРЅРёРіРё ===\n";
         cout << left << setw(5) << "ID" 
-             << setw(30) << "Книга"
-             << setw(25) << "Читатель"
-             << setw(12) << "Дата выдачи"
-             << setw(15) << "План. возврат"
-             << setw(15) << "Дней" << "\n";
+             << setw(30) << "РќР°Р·РІР°РЅРёРµ РєРЅРёРіРё"
+             << setw(25) << "Р§РёС‚Р°С‚РµР»СЊ"
+             << setw(12) << "Р”Р°С‚Р° РІС‹РґР°С‡Рё"
+             << setw(15) << "РџСЂРµРґРї. РІРѕР·РІСЂР°С‚"
+             << setw(15) << "Р”РЅРµР№ РїСЂРѕСЃСЂРѕС‡РєРё" << "\n";
         cout << string(102, '-') << "\n";
         
         string currentDate = getCurrentDate();
@@ -405,24 +405,24 @@ public:
             }
         }
         
-        cout << "\n=== Книги на руках ===\n";
-        cout << "Всего выдано: " << records.size() << "\n";
-        cout << "На руках: " << count << "\n";
-        cout << "Возвращено: " << (records.size() - count) << "\n";
+        cout << "\n=== РљРѕР»РёС‡РµСЃС‚РІРѕ РєРЅРёРі РЅР° СЂСѓРєР°С… ===\n";
+        cout << "Р’СЃРµРіРѕ РєРЅРёРі РІС‹РґР°РЅРѕ: " << records.size() << "\n";
+        cout << "РљРЅРёРі РЅР° СЂСѓРєР°С…: " << count << "\n";
+        cout << "Р’РѕР·РІСЂР°С‰РµРЅРѕ РєРЅРёРі: " << (records.size() - count) << "\n";
     }
     
     void sortRecords() {
         if (records.empty()) {
-            cout << "\nНет записей.\n";
+            cout << "\nРќРµС‚ Р·Р°РїРёСЃРµР№ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё.\n";
             return;
         }
         
-        cout << "\n=== Сортировка ===\n";
-        cout << "1 - По названию книги\n";
-        cout << "2 - По читателю\n";
-        cout << "3 - По дате выдачи\n";
-        cout << "4 - По дате возврата\n";
-        cout << "Выберите: ";
+        cout << "\n=== РЎРѕСЂС‚РёСЂРѕРІРєР° Р·Р°РїРёСЃРµР№ ===\n";
+        cout << "1 - РџРѕ РЅР°Р·РІР°РЅРёСЋ РєРЅРёРіРё\n";
+        cout << "2 - РџРѕ Р¤РРћ С‡РёС‚Р°С‚РµР»СЏ\n";
+        cout << "3 - РџРѕ РґР°С‚Рµ РІС‹РґР°С‡Рё\n";
+        cout << "4 - РџРѕ РїСЂРµРґРїРѕР»Р°РіР°РµРјРѕР№ РґР°С‚Рµ РІРѕР·РІСЂР°С‚Р°\n";
+        cout << "Р’С‹Р±РµСЂРёС‚Рµ РїРѕР»Рµ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё: ";
         
         int choice;
         cin >> choice;
@@ -432,28 +432,28 @@ public:
                 sort(records.begin(), records.end(), [](const BookRecord& a, const BookRecord& b) {
                     return strcmp(a.bookTitle, b.bookTitle) < 0;
                 });
-                cout << "Отсортировано по названию.\n";
+                cout << "Р—Р°РїРёСЃРё РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ РЅР°Р·РІР°РЅРёСЋ РєРЅРёРіРё.\n";
                 break;
             case 2:
                 sort(records.begin(), records.end(), [](const BookRecord& a, const BookRecord& b) {
                     return strcmp(a.readerName, b.readerName) < 0;
                 });
-                cout << "Отсортировано по читателю.\n";
+                cout << "Р—Р°РїРёСЃРё РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ Р¤РРћ С‡РёС‚Р°С‚РµР»СЏ.\n";
                 break;
             case 3:
                 sort(records.begin(), records.end(), [this](const BookRecord& a, const BookRecord& b) {
                     return compareDates(a.issueDate, b.issueDate) < 0;
                 });
-                cout << "Отсортировано по дате выдачи.\n";
+                cout << "Р—Р°РїРёСЃРё РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ РґР°С‚Рµ РІС‹РґР°С‡Рё.\n";
                 break;
             case 4:
                 sort(records.begin(), records.end(), [this](const BookRecord& a, const BookRecord& b) {
                     return compareDates(a.expectedReturnDate, b.expectedReturnDate) < 0;
                 });
-                cout << "Отсортировано по дате возврата.\n";
+                cout << "Р—Р°РїРёСЃРё РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅС‹ РїРѕ РїСЂРµРґРїРѕР»Р°РіР°РµРјРѕР№ РґР°С‚Рµ РІРѕР·РІСЂР°С‚Р°.\n";
                 break;
             default:
-                cout << "Неверный выбор!\n";
+                cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ!\n";
                 return;
         }
         
@@ -465,27 +465,27 @@ public:
         int choice;
         
         do {
-            cout << "\n??????????????????????????????????????????\n";
-            cout << "?     БИБЛИОТЕЧНАЯ СИСТЕМА              ?\n";
-            cout << "??????????????????????????????????????????\n";
-            cout << "? 1 - Добавить запись                   ?\n";
-            cout << "? 2 - Просмотр всех записей             ?\n";
-            cout << "? 3 - Редактировать запись              ?\n";
-            cout << "? 4 - Удалить запись                    ?\n";
-            cout << "? 5 - Возврат книги                     ?\n";
-            cout << "? 6 - Поиск по читателю                 ?\n";
-            cout << "? 7 - Просроченные книги                ?\n";
-            cout << "? 8 - Количество книг на руках          ?\n";
-            cout << "? 9 - Сортировка                        ?\n";
-            cout << "? 0 - Выход                             ?\n";
-            cout << "??????????????????????????????????????????\n";
-            cout << "Выберите действие: ";
+            cout << "\nв•”в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•—\n";
+            cout << "в•‘     Р‘РР‘Р›РРћРўР•Р§РќРђРЇ РЎРРЎРўР•РњРђ РЈР§Р•РўРђ      в•‘\n";
+            cout << "в• в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•Ј\n";
+            cout << "в•‘ 1 - Р”РѕР±Р°РІРёС‚СЊ Р·Р°РїРёСЃСЊ Рѕ РІС‹РґР°С‡Рµ         в•‘\n";
+            cout << "в•‘ 2 - РџСЂРѕСЃРјРѕС‚СЂ РІСЃРµС… Р·Р°РїРёСЃРµР№            в•‘\n";
+            cout << "в•‘ 3 - Р РµРґР°РєС‚РёСЂРѕРІР°С‚СЊ Р·Р°РїРёСЃСЊ             в•‘\n";
+            cout << "в•‘ 4 - РЈРґР°Р»РёС‚СЊ Р·Р°РїРёСЃСЊ                   в•‘\n";
+            cout << "в•‘ 5 - Р’РѕР·РІСЂР°С‚ РєРЅРёРіРё                    в•‘\n";
+            cout << "в•‘ 6 - РџРѕРёСЃРє РїРѕ С‡РёС‚Р°С‚РµР»СЋ                в•‘\n";
+            cout << "в•‘ 7 - РџСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рµ РєРЅРёРіРё               в•‘\n";
+            cout << "в•‘ 8 - РљРѕР»РёС‡РµСЃС‚РІРѕ РєРЅРёРі РЅР° СЂСѓРєР°С…         в•‘\n";
+            cout << "в•‘ 9 - РЎРѕСЂС‚РёСЂРѕРІРєР° Р·Р°РїРёСЃРµР№               в•‘\n";
+            cout << "в•‘ 0 - Р’С‹С…РѕРґ                            в•‘\n";
+            cout << "в•љв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ќ\n";
+            cout << "Р’С‹Р±РµСЂРёС‚Рµ РґРµР№СЃС‚РІРёРµ: ";
             
             cin >> choice;
             
             if (cin.fail()) {
                 clearBuffer();
-                cout << "Ошибка! Введите число.\n";
+                cout << "РћС€РёР±РєР°: РІРІРµРґРёС‚Рµ С‡РёСЃР»Рѕ!\n";
                 continue;
             }
             
@@ -499,8 +499,8 @@ public:
                 case 7: showOverdue(); break;
                 case 8: countBooks(); break;
                 case 9: sortRecords(); break;
-                case 0: cout << "\nДо свидания!\n"; break;
-                default: cout << "Неверный выбор!\n";
+                case 0: cout << "\nР”Рѕ СЃРІРёРґР°РЅРёСЏ!\n"; break;
+                default: cout << "РќРµРІРµСЂРЅС‹Р№ РІС‹Р±РѕСЂ! РџРѕРїСЂРѕР±СѓР№С‚Рµ СЃРЅРѕРІР°.\n";
             }
         } while (choice != 0);
     }
