@@ -10,13 +10,13 @@
 
 using namespace std;
 
-// установка русской кодировки
+// Установка русской кодировки
 void setRussian() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 }
 
-// структура записи
+// Структура записи
 struct BookRecord {
     int id;
     char bookTitle[100];
